@@ -1,0 +1,26 @@
+{
+  "name": "bundlephobia",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/mbriziarelli/bundlephobia.git",
+  "author": "Maxime Briziarelli <maxime.briziarelli@gmail.com>",
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "^9.2.2",
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0"
+  },
+  "devDependencies": {
+    "@types/node": "^13.9.0",
+    "@types/react": "^16.9.23",
+    "typescript": "^3.8.3"
+  }
+}
