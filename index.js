@@ -1,7 +1,7 @@
 const url = require("url");
-const { default: next } = require("next");
 const express = require("express");
-const getSizeMiddleware = require('./buildService')
+const { default: next } = require("next");
+const { default: getSizeMiddleware} = require('./build/buildService')
 
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });

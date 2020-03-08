@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { isNonEmptyString } from "../../server/helpers/types";
-import getSuggestions from "../../server/suggestions";
+import getSuggestions from "../../server/suggestionsService";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const { q: query } = req.query;

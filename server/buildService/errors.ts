@@ -1,8 +1,6 @@
-/** @typedef {import("package-build-stats").CustomError} CustomError */
-/** @typedef {import("package-build-stats").CustomErrorName} CustomErrorName */
+import { CustomError, CustomErrorName } from "package-build-stats"
 
-/** @type { Record<CustomErrorName, { statusCode: number, message: string }> } */
-const customErrors = {
+const customErrors: Record<CustomErrorName, { statusCode: number, message: string }> = {
   "PackageNotFoundError": {
     statusCode: 400,
     message: "Package Not Found",
@@ -31,17 +29,14 @@ const customErrors = {
 
 const customErrorNames = Object.keys(customErrors)
 
-/** @type { (packageName: unknown) => packageName is string } */
-exports.isValidPackageName = packageName => typeof packageName === 'string' && packageName.length > 0
+export const isValidPackageName = (packageName: unknown): packageName is string => typeof packageName === 'string' && packageName.length > 0
 
-/** @type { (packageName: unknown) => { code: string, message: string } } */
-exports.makeBadPackageNameError = packageName => ({
+export const makeBadPackageNameError = (packageName: unknown): { code: string, message: string } => ({
   code: 'Bad Request',
   message: `Invalid or empty package name: "${packageName}"`
 })
 
-/** @type { (error: unknown) => error is CustomError } */
-exports.isCustomError = error => {
+export const isCustomError = (error: unknown): error is CustomError => {
   const nameDescriptor = Object.getOwnPropertyDescriptor(error, "name")
 
   if (nameDescriptor) {
@@ -51,5 +46,4 @@ exports.isCustomError = error => {
   return false
 }
 
-/** @type { (customError: CustomError ) => { statusCode: number, message: string }} */
-exports.makeErrorFromCustomError = customError => customErrors[customError.name]
+export const makeErrorFromCustomError = (customError: CustomError) => customErrors[customError.name]

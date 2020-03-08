@@ -41,7 +41,5 @@ declare module "package-build-stats" {
     extra?: unknown 
   }
 
-  function getBuiltPackageStats(packageName: string, options: BuildPackageStatsOptions): Promise<PackageStats>
-
-  export = getBuiltPackageStats
+  export default function (packageName: string, options: BuildPackageStatsOptions): Promise<PackageStats>
 }

@@ -9,8 +9,11 @@
     "node": ">=10"
   },
   "scripts": {
-    "dev": "node .",
-    "build": "next build",
+    "dev": "yarn dev:buildService && node .",
+    "dev:buildService": "tsc --project tsconfig.buildService.json",
+    "build": "yarn build:buildService && yarn build:next",
+    "build:buildService": "tsc --project tsconfig.buildService.json",
+    "build:next": "next build",
     "start": "NODE_ENV=production node .",
     "test": "jest"
   },
@@ -21,7 +24,8 @@
     "next": "^9.2.2",
     "package-build-stats": "^6.1.2",
     "react": "^16.13.0",
-    "react-dom": "^16.13.0"
+    "react-dom": "^16.13.0",
+    "tslib": "^1.11.1"
   },
   "devDependencies": {
     "@types/express": "^4.17.3",

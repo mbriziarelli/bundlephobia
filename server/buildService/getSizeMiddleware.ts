@@ -1,13 +1,9 @@
-const url = require("url");
-const getStats = require("./getStats")
-const { isValidPackageName, makeBadPackageNameError, isCustomError, makeErrorFromCustomError } = require('./errors')
+import url from "url"
+import { Request, Response } from "express"
+import { getStats } from "./getStats"
+import { isValidPackageName, makeBadPackageNameError, isCustomError, makeErrorFromCustomError } from './errors'
 
-/** @typedef {import("express").Request} Request */
-/** @typedef {import("express").Response} Response */
-/** @typedef {import("express").NextFunction} NextFunction */
-
-/** @type { (req: Request, res: Response, next: NextFunction) => Promise<void> } */
-module.exports = async (req, res, next) => {
+export const getSizeMiddleware = async (req: Request, res: Response) => {
   const { query: { p: packageName } } = url.parse(req.url, true)
 
   try {
