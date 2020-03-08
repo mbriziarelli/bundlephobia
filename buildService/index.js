@@ -5,6 +5,6 @@ const worker = new Worker(require.resolve('./worker'), {
 })
 
 module.exports = async (/** @type {string} */ moduleName) => {
-  // @ts-ignore
+  // @ts-ignore - TS doesn't know that the worker instance is exposing this function 
   return await worker.getStats(moduleName)
 }
