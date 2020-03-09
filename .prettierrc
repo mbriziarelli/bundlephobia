@@ -3,7 +3,7 @@
   "useTabs": false,
   "overrides": [
     {
-      "files": ["*.js", "*.ts"],
+      "files": ["*.js", "*.jsx", "*.ts", "*.tsx"],
       "options": {
         "trailingComma": "es5",
         "semi": false,

@@ -3,8 +3,9 @@ const WARN = 1
 const ERROR = 2
 
 module.exports = {
-  plugins: ['prettier', 'import', '@typescript-eslint'],
+  plugins: ['prettier', 'import', '@typescript-eslint', 'react'],
   extends: [
+    'plugin:react/recommended',
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:import/errors',
@@ -15,7 +16,7 @@ module.exports = {
   ],
   settings: {
     'import/parsers': {
-      '@typescript-eslint/parser': ['.ts', '.js'],
+      '@typescript-eslint/parser': ['.ts', '.tsx', '.js'],
     },
   },
   rules: {
@@ -23,6 +24,10 @@ module.exports = {
   },
   parser: '@typescript-eslint/parser',
   parserOptions: {
+    ecmaFeature: {
+      jsx: true,
+    },
+    ecmaVersion: 2018,
     sourceType: 'module',
   },
   env: {
