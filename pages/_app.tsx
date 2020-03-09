@@ -1,5 +1,4 @@
 // Copied from https://github.com/mui-org/material-ui/tree/master/examples/nextjs
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
 
 import React from 'react'
 import App from 'next/app'
@@ -9,12 +8,12 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import theme from '../components/theme'
 
 export default class MyApp extends App {
-  componentDidMount() {
+  componentDidMount(): void {
     const jssStyles = document.querySelector('#jss-server-side')
     jssStyles?.parentElement?.removeChild(jssStyles)
   }
 
-  render() {
+  render(): JSX.Element {
     const { Component, pageProps } = this.props
 
     return (
@@ -27,7 +26,6 @@ export default class MyApp extends App {
           />
         </Head>
         <ThemeProvider theme={theme}>
-          {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
           <CssBaseline />
           <Component {...pageProps} />
         </ThemeProvider>
