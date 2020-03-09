@@ -9,12 +9,11 @@
     "node": ">=10"
   },
   "scripts": {
-    "dev": "yarn dev:buildServer && node .",
-    "dev:buildServer": "tsc --project tsconfig.buildServer.json",
-    "build": "yarn build:buildServer && yarn build:next",
-    "build:buildServer": "tsc --project tsconfig.buildServer.json",
-    "build:next": "next build",
+    "dev": "NODE_ENV=development yarn build:server && node .",
     "start": "NODE_ENV=production node .",
+    "build": "yarn build:server && yarn build:next",
+    "build:server": "tsc --project tsconfig.buildServer.json",
+    "build:next": "next build",
     "test": "yarn test:lint && yarn test:unit",
     "test:lint": "eslint --report-unused-disable-directives --ext .ts ./pages ./server ./typings",
     "test:unit": "jest"
