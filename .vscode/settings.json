@@ -1,0 +1,10 @@
+{
+  "editor.formatOnSave": true,
+  "eslint.alwaysShowStatus": true,
+  "eslint.format.enable": true,
+  "eslint.packageManager": "yarn",
+  "eslint.workingDirectories": [{ "mode": "auto" }],
+  "eslint.validate": ["javascript", "typescript"],
+  "eslint.run": "onSave",
+  "typescript.tsdk": "./node_modules/typescript/lib"
+}

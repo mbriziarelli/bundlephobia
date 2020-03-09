@@ -1,4 +1,4 @@
-declare module "package-build-stats" {
+declare module 'package-build-stats' {
   interface Asset {
     name: string
     type: string
@@ -27,19 +27,28 @@ declare module "package-build-stats" {
   }
 
   export interface BuildPackageStatsOptions {
-    client: "npm" | "yarn"
+    client: 'npm' | 'yarn'
     limitConcurrency?: boolean
     networkConcurrency?: number
     customImports?: string[]
   }
 
-  export type CustomErrorName = "PackageNotFoundError" | "InstallError" | "EntryPointError" | "MissingDependencyError" | "CLIBuildError" | "BuildError"
+  export type CustomErrorName =
+    | 'PackageNotFoundError'
+    | 'InstallError'
+    | 'EntryPointError'
+    | 'MissingDependencyError'
+    | 'CLIBuildError'
+    | 'BuildError'
 
   export class CustomError {
     name: CustomErrorName
     originalError: Error
-    extra?: unknown 
+    extra?: unknown
   }
 
-  export default function (packageName: string, options: BuildPackageStatsOptions): Promise<PackageStats>
+  export default function(
+    packageName: string,
+    options: BuildPackageStatsOptions
+  ): Promise<PackageStats>
 }

@@ -1,3 +1,3 @@
-import { getSizeMiddleware } from "./getSizeMiddleware"
+import { getSizeMiddleware } from './getSizeMiddleware'
 
 export default getSizeMiddleware
