@@ -1,20 +1,12 @@
 import Worker from 'jest-worker'
 import { PackageStats } from 'package-build-stats'
+import { isString } from '../helpers/types'
 import { exposedMethod } from './getStatsWorker'
 
 const exposedMethods = [exposedMethod]
 
-const computeWorkerKey = (
-  method: string,
-  ...args: unknown[]
-): string | null => {
-  if (method === exposedMethod) {
-    if (args.length > 0 && typeof args[0] === 'string') {
-      return args[0]
-    }
-  }
-  return null
-}
+const computeWorkerKey = (method: string, ...args: unknown[]): string | null =>
+  method === exposedMethod && isString(args[0]) ? args[0] : null
 
 const worker = new Worker(require.resolve('./getStatsWorker'), {
   exposedMethods,

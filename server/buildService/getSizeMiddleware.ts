@@ -1,12 +1,13 @@
 import url from 'url'
 import { Request, Response } from 'express'
 import { getStats } from './getStats'
+import { isNonEmptyString } from '../helpers/types'
 import {
-  isValidPackageName,
-  makeBadPackageNameError,
   isCustomError,
+  makeBadPackageNameError,
   makeErrorFromCustomError,
-} from './errors'
+  genericServerError,
+} from '../errors'
 
 export const getSizeMiddleware = async (
   req: Request,
@@ -17,17 +18,18 @@ export const getSizeMiddleware = async (
   } = url.parse(req.url, true)
 
   try {
-    if (isValidPackageName(packageName)) {
-      res.json(await getStats(packageName))
+    if (isNonEmptyString(packageName)) {
+      const stats = await getStats(packageName)
+      res.status(200).json(stats)
     } else {
-      res.status(400).json(makeBadPackageNameError(packageName))
+      const { statusCode, code, message } = makeBadPackageNameError(packageName)
+      res.status(statusCode).json({ code, message })
     }
   } catch (error) {
-    if (isCustomError(error)) {
-      const { statusCode, message } = makeErrorFromCustomError(error)
-      res.status(statusCode).json({ message })
-    } else {
-      res.status(500).json({ message: 'Unknown Error' })
-    }
+    const { statusCode, code, message } = isCustomError(error)
+      ? makeErrorFromCustomError(error)
+      : genericServerError
+
+    res.status(statusCode).json({ code, message })
   }
 }
