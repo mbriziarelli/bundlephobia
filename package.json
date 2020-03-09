@@ -1,7 +1,7 @@
 {
   "name": "bundlephobia",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "./build/index.js",
   "repository": "https://github.com/mbriziarelli/bundlephobia.git",
   "author": "Maxime Briziarelli <maxime.briziarelli@gmail.com>",
   "license": "UNLICENSED",
@@ -9,10 +9,10 @@
     "node": ">=10"
   },
   "scripts": {
-    "dev": "yarn dev:buildService && node .",
-    "dev:buildService": "tsc --project tsconfig.buildService.json",
-    "build": "yarn build:buildService && yarn build:next",
-    "build:buildService": "tsc --project tsconfig.buildService.json",
+    "dev": "yarn dev:buildServer && node .",
+    "dev:buildServer": "tsc --project tsconfig.buildServer.json",
+    "build": "yarn build:buildServer && yarn build:next",
+    "build:buildServer": "tsc --project tsconfig.buildServer.json",
     "build:next": "next build",
     "start": "NODE_ENV=production node .",
     "test": "jest"
@@ -32,6 +32,7 @@
     "@types/jest": "^25.1.4",
     "@types/node": "^13.9.0",
     "@types/react": "^16.9.23",
+    "@types/react-dom": "^16.9.5",
     "jest": "^25.1.0",
     "ts-jest": "^25.2.1",
     "typescript": "^3.8.3"

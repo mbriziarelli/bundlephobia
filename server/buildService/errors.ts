@@ -38,12 +38,7 @@ export const makeBadPackageNameError = (packageName: unknown): { code: string, m
 
 export const isCustomError = (error: unknown): error is CustomError => {
   const nameDescriptor = Object.getOwnPropertyDescriptor(error, "name")
-
-  if (nameDescriptor) {
-    return customErrorNames.includes(nameDescriptor.value)
-  }
-
-  return false
+  return nameDescriptor ? customErrorNames.includes(nameDescriptor.value) : false
 }
 
 export const makeErrorFromCustomError = (customError: CustomError) => customErrors[customError.name]
