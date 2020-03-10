@@ -2,6 +2,25 @@
 
 A rewrite of https://github.com/pastelsky/bundlephobia
 
+## FOR REVIEWERS
+
+### Done
+
+- Basic Setup with Next.js + TypeScript
+- ESlint linting
+- Jest unit testing + RTL for React Components + Coverage
+- Suggestions API
+- Build API (without caching) based on package-build-stats + jest-worker
+- Home Page with text field and suggestions
+
+### To Be Done
+
+- History API, giving the three minor versions and the newest major prior to the current one
+- Caching results for in the Build API
+- React component displaying results
+- Logging with winston
+- Instrumenting (timings, metrics) with Prometheus
+
 ## Installation
 
 In order to compile and run **Bundlephobia**, you'll need to have installed on your computer:
