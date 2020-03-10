@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`errors module makeBadPackageNameError function returns a BadRequest error with message containing the bad package name 1`] = `
+Object {
+  "code": "BadRequest",
+  "message": "Invalid or empty package name: \\"error\\"",
+  "statusCode": 400,
+}
+`;
