@@ -18,6 +18,9 @@ module.exports = {
     'import/parsers': {
       '@typescript-eslint/parser': ['.ts', '.tsx', '.js'],
     },
+    react: {
+      version: 'detect',
+    },
   },
   rules: {
     'prettier/prettier': ERROR,
