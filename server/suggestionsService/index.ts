@@ -8,7 +8,7 @@ export default async (query: string): Promise<Suggestion[]> => {
       `https://api.npms.io/v2/search/suggestions?q=${query}`
     )
 
-    return toSortedSuggestions(Array.isArray(suggestions) ? suggestions : [])
+    return Array.isArray(suggestions) ? toSortedSuggestions(suggestions) : []
   } catch {
     return []
   }
