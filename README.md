@@ -15,9 +15,10 @@ A rewrite of https://github.com/pastelsky/bundlephobia
 
 ### To Be Done
 
-- History API, giving the three minor versions and the newest major prior to the current one
-- Caching results for in the Build API
+- History API, giving the three minor versions and the newest major prior to the current one - based on pacote
+- Caching results for in the Build API - based on lru-cache
 - React component displaying results
+- Integration tests to increase code coverage
 - Logging with winston
 - Instrumenting (timings, metrics) with Prometheus
 
