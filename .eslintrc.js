@@ -24,6 +24,7 @@ module.exports = {
   },
   rules: {
     'prettier/prettier': ERROR,
+    'react/prop-types': OFF,
   },
   parser: '@typescript-eslint/parser',
   parserOptions: {
