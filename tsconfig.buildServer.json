@@ -64,5 +64,10 @@
     "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */
   },
   "include": ["./server/**/*.ts", "./typings/**/*.ts"],
-  "exclude": ["./server/suggestionsService", "./server/historyService"]
+  "exclude": [
+    "./server/suggestionsService",
+    "./server/historyService",
+    "**/*.test.ts",
+    "**/*.test.tsx"
+  ]
 }
