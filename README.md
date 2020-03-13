@@ -12,10 +12,10 @@ A rewrite of https://github.com/pastelsky/bundlephobia
 - Suggestions API
 - Build API (without caching) based on package-build-stats + jest-worker
 - Home Page with text field and suggestions
+- History API, giving the three minor versions and the newest major prior to the current one - based on pacote
 
 ### To Be Done
 
-- History API, giving the three minor versions and the newest major prior to the current one - based on pacote
 - Caching results for in the Build API - based on lru-cache
 - React component displaying results
 - Integration tests to increase code coverage
