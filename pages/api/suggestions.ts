@@ -7,7 +7,9 @@ export default async (
   res: NextApiResponse
 ): Promise<void> => {
   const { q: query } = req.query
-  const suggestions = isNonEmptyString(query) ? await getSuggestions(query) : []
+  const suggestions = isNonEmptyString(query)
+    ? await getSuggestions(query.toLowerCase().trim())
+    : []
 
   res.status(200).json(suggestions)
 }

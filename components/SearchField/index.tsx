@@ -1,9 +1,8 @@
-import React, { ChangeEvent } from 'react'
-import axios from 'axios'
-import TextField, { TextFieldProps } from '@material-ui/core/TextField'
+import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import Autocomplete from '@material-ui/lab/Autocomplete'
-import useDebounce from '../useDebounce'
-import { isNonEmptyString } from '../../server/helpers/types'
+import TextField, { TextFieldProps } from '@material-ui/core/TextField'
+import usePackageName from '../Hooks/usePackageName'
+import useSuggestions from '../Hooks/useSuggestions'
 import { Suggestion } from '../../server/suggestionsService/types'
 
 const getOptionLabel = (option: Suggestion): string =>
@@ -12,61 +11,59 @@ const getOptionLabel = (option: Suggestion): string =>
 const getOptionSelected = (option1: Suggestion, option2: Suggestion): boolean =>
   option1.name === option2.name && option1.version === option2.version
 
-const fetchSuggestions = (searchTerm: string): Promise<Suggestion[]> =>
-  searchTerm.length > 0
-    ? axios
-        .get(`/api/suggestions?q=${searchTerm}`)
-        .then(({ data: suggestions }) => suggestions)
-        .catch(() => [])
-    : Promise.resolve([])
-
 const SearchField: React.FC = () => {
-  const [isOpen, setIsOpen] = React.useState<boolean>(false)
-  const [options, setOptions] = React.useState<Suggestion[]>([])
-  const [searchTerm, setSearchTerm] = React.useState<string>('')
-  const debouncedSearchTerm = useDebounce<string>(searchTerm, 200)
+  const [queryPackageName, setQueryPackageName] = usePackageName()
+  const [editedPackageName, setEditedPackageName] = useState('')
+  const [isOpen, setIsOpen] = useState(false)
+  const suggestions = useSuggestions(editedPackageName)
 
-  const onOpen = (): void => {
-    setIsOpen(true)
-  }
-  const onClose = (): void => {
-    setIsOpen(false)
-  }
-  const onChange = (event: ChangeEvent<{}>, value: string): void => {
-    setSearchTerm(value)
-  }
+  useEffect(() => {
+    setEditedPackageName(queryPackageName)
+  }, [queryPackageName])
 
+  const onOpen = (): void => void setIsOpen(true)
+  const onClose = (): void => void setIsOpen(false)
+  const onInputChange = (event: ChangeEvent<{}>, value: string): void =>
+    void setEditedPackageName(value)
+  const onChange = (event: ChangeEvent<HTMLInputElement>): void =>
+    void setEditedPackageName(event.target.value)
   const renderInput = (params: TextFieldProps): JSX.Element => (
-    <TextField {...params} label="Find Package" variant="outlined" />
+    <TextField
+      {...params}
+      autoFocus
+      label="Find Package"
+      onChange={onChange}
+      value={editedPackageName}
+      variant="outlined"
+    />
   )
 
-  React.useEffect(() => {
-    if (isNonEmptyString(debouncedSearchTerm)) {
-      setIsOpen(true)
-      fetchSuggestions(searchTerm.trim()).then(setOptions)
-    } else {
-      setIsOpen(false)
-      setOptions([])
-    }
-  }, [debouncedSearchTerm])
-
   return (
-    <Autocomplete
-      autoComplete
-      disableOpenOnFocus
-      freeSolo
-      getOptionLabel={getOptionLabel}
-      getOptionSelected={getOptionSelected}
-      includeInputInList
-      noOptionsText="No Suggestions"
-      onClose={onClose}
-      onInputChange={onChange}
-      onOpen={onOpen}
-      open={isOpen}
-      options={options}
-      renderInput={renderInput}
-      style={{ width: 350 }}
-    />
+    <form
+      noValidate
+      autoComplete="off"
+      onSubmit={(event: FormEvent): void => {
+        event.preventDefault()
+        setQueryPackageName(editedPackageName)
+      }}
+    >
+      <Autocomplete
+        autoComplete
+        disableOpenOnFocus
+        freeSolo
+        getOptionLabel={getOptionLabel}
+        getOptionSelected={getOptionSelected}
+        includeInputInList
+        noOptionsText="No Suggestions"
+        onClose={onClose}
+        onInputChange={onInputChange}
+        onOpen={onOpen}
+        open={isOpen}
+        options={suggestions}
+        renderInput={renderInput}
+        style={{ width: 350 }}
+      />
+    </form>
   )
 }
 

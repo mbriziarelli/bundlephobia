@@ -17,7 +17,7 @@ const withLayout = (Page: NextPage) => (): JSX.Element => {
   const classes = useStyles()
 
   return (
-    <Container maxWidth={false} className={classes.container}>
+    <Container className={classes.container}>
       <Grid container direction="row" justify="center" alignItems="center">
         <Grid xs={12} item>
           <Header />

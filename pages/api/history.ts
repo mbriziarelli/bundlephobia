@@ -8,7 +8,7 @@ export default async (
 ): Promise<void> => {
   const { p: packageName } = req.query
   const history = isNonEmptyString(packageName)
-    ? await getHistory(packageName)
+    ? await getHistory(packageName.toLowerCase().trim())
     : {}
 
   res.status(200).json(history)

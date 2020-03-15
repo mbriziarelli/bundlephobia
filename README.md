@@ -16,8 +16,8 @@ A rewrite of https://github.com/pastelsky/bundlephobia
 
 ### To Be Done
 
-- Caching results for in the Build API - based on lru-cache
 - React component displaying results
+- Caching results for in the Build API - based on lru-cache
 - Integration tests to increase code coverage
 - Logging with winston
 - Instrumenting (timings, metrics) with Prometheus

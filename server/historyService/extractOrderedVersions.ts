@@ -13,8 +13,13 @@ const getOrderedVersions = (packument: Packument): string[] =>
     .sort(compare)
     .reverse()
 
-const extractVersion = (packageName: string, packument: Packument): string =>
-  packageName.split('@')[1] || packument['dist-tags'].latest
+const extractVersion = (packageName: string, packument: Packument): string => {
+  const packageVersion = packageName.split('@')[1]
+
+  return packageVersion === undefined || packageVersion === 'latest'
+    ? packument['dist-tags'].latest
+    : packageVersion
+}
 
 const getOrderedVersionsSlice = (
   orderedVersions: string[],

@@ -9,7 +9,7 @@ const AllTheProviders: React.FC = ({ children }) => {
 
 const customRender = (
   ui: React.ReactElement,
-  options: RenderOptions
+  options: RenderOptions = {}
 ): RenderResult => render(ui, { wrapper: AllTheProviders, ...options })
 
 // re-export everything
