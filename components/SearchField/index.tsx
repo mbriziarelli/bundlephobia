@@ -29,10 +29,24 @@ const SearchField: React.FC = (): ReactElement => {
 
   const onOpen = (): void => void setIsOpen(true)
   const onClose = (): void => void setIsOpen(false)
-  const onInputChange = (event: ChangeEvent<{}>, value: string): void =>
-    void setEditedPackageName(value)
+
+  const onInputChange = (
+    event: ChangeEvent<{}>,
+    value: string,
+    reason: string
+  ): void => {
+    switch (reason) {
+      case 'input':
+        setEditedPackageName(value)
+      case 'clear':
+      case 'reset':
+        setQueryPackageName('')
+    }
+  }
+
   const onChange = (event: ChangeEvent<HTMLInputElement>): void =>
     void setEditedPackageName(event.target.value)
+
   const renderInput = (params: TextFieldProps): ReactElement => (
     <TextField
       {...params}

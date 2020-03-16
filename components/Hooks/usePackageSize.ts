@@ -104,6 +104,8 @@ export default (packageName: string): Result => {
         setResult(result)
         source = null
       })
+    } else {
+      setResult({ status: Status.sleeping })
     }
 
     return (): void => void source?.cancel()

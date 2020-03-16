@@ -13,12 +13,16 @@ A rewrite of https://github.com/pastelsky/bundlephobia
 - Build API (without caching) based on package-build-stats + jest-worker
 - Home Page with text field and suggestions
 - History API, giving the three minor versions and the newest major prior to the current one - based on pacote
+- React component displaying results
 
 ### To Be Done
 
-- React component displaying results
-- Caching results for in the Build API - based on lru-cache
+- React component comparing package sizes
 - Integration tests to increase code coverage
+
+### Nice To Have
+
+- Caching results for in the Build API - based on lru-cache
 - Logging with winston
 - Instrumenting (timings, metrics) with Prometheus
 

@@ -38,9 +38,9 @@ const kilobytesUnit = 'KiB'
 const bytesUnit = 'bytes'
 
 const toUnits = (sizeInBytes: number): [string, string] => {
-  if (sizeInBytes > megabyte) {
+  if (sizeInBytes >= megabyte) {
     return [(sizeInBytes / megabyte).toFixed(1), megabytesUnit]
-  } else if (sizeInBytes > kilobyte) {
+  } else if (sizeInBytes >= kilobyte) {
     return [(sizeInBytes / kilobyte).toFixed(1), kilobytesUnit]
   } else {
     return [sizeInBytes.toString(), bytesUnit]
