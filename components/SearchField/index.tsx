@@ -1,9 +1,15 @@
-import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react'
+import React, {
+  ChangeEvent,
+  FormEvent,
+  ReactElement,
+  useEffect,
+  useState,
+} from 'react'
 import Autocomplete from '@material-ui/lab/Autocomplete'
 import TextField, { TextFieldProps } from '@material-ui/core/TextField'
+import { Suggestion } from 'bundlephobia-suggestions-service'
 import usePackageName from '../Hooks/usePackageName'
 import useSuggestions from '../Hooks/useSuggestions'
-import { Suggestion } from '../../server/suggestionsService/types'
 
 const getOptionLabel = (option: Suggestion): string =>
   `${option.name}@${option.version}`
@@ -11,9 +17,9 @@ const getOptionLabel = (option: Suggestion): string =>
 const getOptionSelected = (option1: Suggestion, option2: Suggestion): boolean =>
   option1.name === option2.name && option1.version === option2.version
 
-const SearchField: React.FC = () => {
+const SearchField: React.FC = (): ReactElement => {
   const [queryPackageName, setQueryPackageName] = usePackageName()
-  const [editedPackageName, setEditedPackageName] = useState('')
+  const [editedPackageName, setEditedPackageName] = useState(queryPackageName)
   const [isOpen, setIsOpen] = useState(false)
   const suggestions = useSuggestions(editedPackageName)
 
@@ -27,7 +33,7 @@ const SearchField: React.FC = () => {
     void setEditedPackageName(value)
   const onChange = (event: ChangeEvent<HTMLInputElement>): void =>
     void setEditedPackageName(event.target.value)
-  const renderInput = (params: TextFieldProps): JSX.Element => (
+  const renderInput = (params: TextFieldProps): ReactElement => (
     <TextField
       {...params}
       autoFocus

@@ -1,6 +1,6 @@
 // Copied from https://github.com/mui-org/material-ui/tree/master/examples/nextjs
 
-import React from 'react'
+import React, { ReactElement } from 'react'
 import App from 'next/app'
 import Head from 'next/head'
 import { ThemeProvider } from '@material-ui/core/styles'
@@ -13,7 +13,7 @@ export default class MyApp extends App {
     jssStyles?.parentElement?.removeChild(jssStyles)
   }
 
-  render(): JSX.Element {
+  render(): ReactElement {
     const { Component, pageProps } = this.props
 
     return (

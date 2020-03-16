@@ -1,6 +1,6 @@
 // Copied from https://github.com/mui-org/material-ui/tree/master/examples/nextjs
 
-import React from 'react'
+import React, { ReactElement } from 'react'
 import Document, {
   Head,
   Main,
@@ -12,7 +12,7 @@ import { ServerStyleSheets } from '@material-ui/core/styles'
 import theme from '../components/theme'
 
 export default class MyDocument extends Document {
-  render(): JSX.Element {
+  render(): ReactElement {
     return (
       <html lang="en">
         <Head>

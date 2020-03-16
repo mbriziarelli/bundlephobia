@@ -1,6 +1,6 @@
 import axios from 'axios'
+import { Suggestion } from 'bundlephobia-suggestions-service'
 import toSortedSuggestions from './toSortedSuggestions'
-import { Suggestion } from './types'
 
 export default async (query: string): Promise<Suggestion[]> => {
   try {

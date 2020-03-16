@@ -1,7 +1,7 @@
 import * as Axios from 'axios'
+import { Suggestion } from 'bundlephobia-suggestions-service'
 import * as SuggestionsSorter from './toSortedSuggestions'
 import getSuggestions from '.'
-import { Suggestion } from './types'
 
 jest.mock('./toSortedSuggestions', () => {
   return {

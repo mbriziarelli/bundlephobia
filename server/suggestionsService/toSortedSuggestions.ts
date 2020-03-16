@@ -1,4 +1,4 @@
-import { NpmsSuggestion, Suggestion } from './types'
+import { NpmsSuggestion, Suggestion } from 'bundlephobia-suggestions-service'
 
 const toSuggestion = (
   name: string,

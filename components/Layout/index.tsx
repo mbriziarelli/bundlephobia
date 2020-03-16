@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactElement } from 'react'
 import { NextPage } from 'next'
 import Grid from '@material-ui/core/Grid'
 import Container from '@material-ui/core/Container'
@@ -13,12 +13,12 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 )
 
-const withLayout = (Page: NextPage) => (): JSX.Element => {
+const withLayout = (Page: NextPage) => (): ReactElement => {
   const classes = useStyles()
 
   return (
     <Container className={classes.container}>
-      <Grid container direction="row" justify="center" alignItems="center">
+      <Grid container direction="column" justify="center" alignItems="center">
         <Grid xs={12} item>
           <Header />
         </Grid>
@@ -26,7 +26,7 @@ const withLayout = (Page: NextPage) => (): JSX.Element => {
           xs={12}
           item
           container
-          direction="row"
+          direction="column"
           alignItems="center"
           justify="center"
           className={classes.container}

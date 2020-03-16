@@ -1,5 +1,5 @@
 import { CustomError } from 'package-build-stats'
-import { ServerError } from './types'
+import { ServerError } from 'bundlephobia-errors'
 import customErrors from './customErrors'
 
 const customErrorNames = Object.keys(customErrors)

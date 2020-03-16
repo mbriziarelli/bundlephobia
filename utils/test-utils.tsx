@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactElement } from 'react'
 import { render, RenderResult, RenderOptions } from '@testing-library/react'
 import { ThemeProvider } from '@material-ui/core/styles'
 import theme from '../components/theme'
@@ -8,7 +8,7 @@ const AllTheProviders: React.FC = ({ children }) => {
 }
 
 const customRender = (
-  ui: React.ReactElement,
+  ui: ReactElement,
   options: RenderOptions = {}
 ): RenderResult => render(ui, { wrapper: AllTheProviders, ...options })
 

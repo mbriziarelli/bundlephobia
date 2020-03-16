@@ -1,5 +1,5 @@
 import { CustomErrorName } from 'package-build-stats'
-import { ServerError } from './types'
+import { ServerError } from 'bundlephobia-errors'
 
 export default {
   PackageNotFoundError: {

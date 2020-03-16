@@ -25,6 +25,10 @@ module.exports = {
   rules: {
     'prettier/prettier': ERROR,
     'react/prop-types': OFF,
+    'import/no-unresolved': [
+      ERROR,
+      { ignore: ['bundlephobia-errors', 'bundlephobia-suggestions-service'] },
+    ],
   },
   parser: '@typescript-eslint/parser',
   parserOptions: {

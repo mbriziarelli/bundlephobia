@@ -1,5 +1,5 @@
+import { NpmsSuggestion } from 'bundlephobia-suggestions-service'
 import toSortedSuggestions from './toSortedSuggestions'
-import { NpmsSuggestion } from './types'
 
 describe('toSortedSuggestions function', () => {
   it('removes npms suggestions without name', () => {
