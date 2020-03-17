@@ -9,17 +9,8 @@ import * as PackageSize from '../Hooks/usePackageSize'
 import { Status } from '../Hooks/usePackageSize'
 import { render } from '../../utils/test-utils'
 
-jest.mock('../Hooks/usePackageName', () => ({
-  ...jest.requireActual('../Hooks/usePackageName'),
-  __esModule: true,
-  default: jest.fn(),
-}))
-
-jest.mock('../Hooks/usePackageSize', () => ({
-  ...jest.requireActual('../Hooks/usePackageSize'),
-  __esModule: true,
-  default: jest.fn(),
-}))
+jest.mock('../Hooks/usePackageName')
+jest.mock('../Hooks/usePackageSize')
 
 afterAll(() => {
   jest.unmock('../Hooks/usePackageName')

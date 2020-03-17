@@ -7,15 +7,6 @@ import { NextRouter } from 'next/router'
 import { testHook } from '../../utils/test-hook'
 import usePackageName from './usePackageName'
 
-jest.mock('next/router', () => ({
-  ...jest.requireActual('next/router'),
-  useRouter: jest.fn(),
-}))
-
-afterAll(() => {
-  jest.unmock('next/router')
-})
-
 describe('usePackageName hook', () => {
   const spyOnUseRouter = jest.spyOn(Router, 'useRouter')
 

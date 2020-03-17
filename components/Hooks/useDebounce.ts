@@ -1,11 +1,11 @@
 // Copied from  https://dev.to/gabe_ragland/debouncing-with-react-hooks-jci
 
-import React from 'react'
+import { useEffect, useState } from 'react'
 
-export default function useDebounce<T>(value: T, delay: number): T {
-  const [debouncedValue, setDebouncedValue] = React.useState<T>(value)
+export default <T>(value: T, delay: number): T => {
+  const [debouncedValue, setDebouncedValue] = useState<T>(value)
 
-  React.useEffect(() => {
+  useEffect(() => {
     const handler = setTimeout(() => {
       setDebouncedValue(value)
     }, delay)

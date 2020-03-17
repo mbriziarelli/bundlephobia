@@ -1,1 +1,6 @@
-export default jest.genMockFromModule('axios')
+const actualAxios = jest.requireActual('axios')
+
+export default {
+  ...actualAxios,
+  get: jest.fn(),
+}

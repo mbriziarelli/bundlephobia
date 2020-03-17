@@ -22,7 +22,7 @@ const Header: React.FC = () => {
   const classes = useStyles()
 
   return (
-    <React.Fragment>
+    <>
       <Typography
         variant="h4"
         component="h1"
@@ -40,7 +40,7 @@ const Header: React.FC = () => {
       >
         find the cost of adding a npm package to your bundle
       </Typography>
-    </React.Fragment>
+    </>
   )
 }
 

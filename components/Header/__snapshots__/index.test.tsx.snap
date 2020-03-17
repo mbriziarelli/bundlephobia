@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Header /> component renders the component 1`] = `
+<div>
+  <h1
+    class="MuiTypography-root makeStyles-logo-1 MuiTypography-h4 MuiTypography-alignCenter"
+  >
+    bundlephobia
+  </h1>
+  <h2
+    class="MuiTypography-root makeStyles-tagline-2 MuiTypography-h6 MuiTypography-gutterBottom MuiTypography-alignCenter"
+  >
+    find the cost of adding a npm package to your bundle
+  </h2>
+</div>
+`;

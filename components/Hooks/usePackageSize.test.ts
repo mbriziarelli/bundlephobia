@@ -3,19 +3,12 @@
  */
 
 import axios from 'axios'
-import { wait } from '@testing-library/react'
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore - waiFor exists but not yet in definition files
+import { waitFor } from '@testing-library/react'
 import usePackageSize, { Status, PackageSizes } from './usePackageSize'
 import { testHook } from '../../utils/test-hook'
 import { ServerError } from 'bundlephobia-errors'
-
-jest.mock('axios', () => ({
-  ...jest.requireActual('axios'),
-  get: jest.fn(),
-}))
-
-afterAll(() => {
-  jest.unmock('axios')
-})
 
 describe('usePackageSize hook', () => {
   describe('when package name is the empty string', () => {
@@ -58,7 +51,7 @@ describe('usePackageSize hook', () => {
       })
 
       expect(status).toBe(Status.fetching)
-      await wait(() => expect(fakeAxios).resolves.toEqual(fakeAxiosResponse))
+      await waitFor(() => expect(fakeAxios).resolves.toEqual(fakeAxiosResponse))
 
       expect(status).toBe(Status.received)
       expect(sizes).toEqual({
@@ -90,7 +83,7 @@ describe('usePackageSize hook', () => {
       })
 
       expect(status).toBe(Status.fetching)
-      await wait(() => expect(fakeAxios).rejects.toEqual(fakeAxiosError))
+      await waitFor(() => expect(fakeAxios).rejects.toEqual(fakeAxiosError))
 
       expect(status).toBe(Status.error)
       expect(error).toEqual({

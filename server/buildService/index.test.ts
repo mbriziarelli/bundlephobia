@@ -4,25 +4,8 @@ import * as Errors from '../errors'
 import * as GetStats from './getStats'
 import getSizeMiddleware from '.'
 
-jest.mock('../errors', () => {
-  const actualErrors = jest.requireActual('../errors')
-
-  return {
-    ...actualErrors,
-    isCustomError: jest.fn(),
-    makeBadPackageNameError: jest.fn(),
-    makeErrorFromCustomError: jest.fn(),
-  }
-})
-
-jest.mock('./getStats', () => {
-  const actualGetStats = jest.requireActual('./getStats')
-
-  return {
-    ...actualGetStats,
-    getStats: jest.fn(),
-  }
-})
+jest.mock('../errors')
+jest.mock('./getStats')
 
 afterAll(() => {
   jest.unmock('../errors')

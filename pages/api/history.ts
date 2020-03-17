@@ -1,15 +1,18 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import { isNonEmptyString } from '../../server/helpers/types'
+import { isString } from '../../server/helpers/types'
 import getHistory from '../../server/historyService'
 
 export default async (
   req: NextApiRequest,
   res: NextApiResponse
 ): Promise<void> => {
-  const { p: packageName } = req.query
-  const history = isNonEmptyString(packageName)
-    ? await getHistory(packageName.toLowerCase().trim())
-    : {}
+  const { p } = req.query
+  const packageName = isString(p) ? p.toLowerCase().trim() : ''
+
+  const history =
+    packageName.length > 0
+      ? await getHistory(packageName.toLowerCase().trim())
+      : {}
 
   res.status(200).json(history)
 }

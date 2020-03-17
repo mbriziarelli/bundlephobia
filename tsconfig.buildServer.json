@@ -65,6 +65,7 @@
   },
   "include": ["./server/**/*.ts", "./typings/**/*.ts"],
   "exclude": [
+    "**/__mocks__/*",
     "./server/suggestionsService",
     "./server/historyService",
     "**/*.test.ts",
