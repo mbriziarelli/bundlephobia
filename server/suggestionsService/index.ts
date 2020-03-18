@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { Suggestion } from 'bundlephobia-suggestions-service'
 import toSortedSuggestions from './toSortedSuggestions'
+import logger from '../logger'
 
 export default async (query: string): Promise<Suggestion[]> => {
   try {
@@ -9,7 +10,8 @@ export default async (query: string): Promise<Suggestion[]> => {
     )
 
     return Array.isArray(suggestions) ? toSortedSuggestions(suggestions) : []
-  } catch {
+  } catch (error) {
+    logger.error(error)
     return []
   }
 }

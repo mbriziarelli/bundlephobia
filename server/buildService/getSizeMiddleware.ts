@@ -2,6 +2,7 @@ import url from 'url'
 import { Request, Response } from 'express'
 import { getStats } from './getStats'
 import { isNonEmptyString } from '../helpers/types'
+import logger from '../logger'
 import {
   isCustomError,
   makeBadPackageNameError,
@@ -23,6 +24,7 @@ export const getSizeMiddleware = async (
       res.status(200).json(stats)
     } else {
       const { statusCode, code, message } = makeBadPackageNameError(packageName)
+      logger.error({ statusCode, code, message })
       res.status(statusCode).json({ code, message })
     }
   } catch (error) {
@@ -30,6 +32,7 @@ export const getSizeMiddleware = async (
       ? makeErrorFromCustomError(error)
       : genericServerError
 
+    logger.error({ statusCode, code, message })
     res.status(statusCode).json({ code, message })
   }
 }

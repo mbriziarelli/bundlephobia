@@ -3,6 +3,7 @@ import prerelease from 'semver/functions/prerelease'
 import compare from 'semver/functions/compare'
 import diff from 'semver/functions/diff'
 import { isNonEmptyString } from '../helpers/types'
+import logger from '../logger'
 
 const isNotPrerelease = (version: string): boolean =>
   Array.isArray(prerelease(version)) === false
@@ -60,6 +61,7 @@ export default async (packageName: string): Promise<string[]> => {
 
     return Array.from(history).filter(isNonEmptyString)
   } catch (error) {
+    logger.error(error)
     return []
   }
 }
