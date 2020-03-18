@@ -1,31 +1,20 @@
-import url from 'url'
 import path from 'path'
-import express, { Request, Response } from 'express'
 import next from 'next'
-import getSizeMiddleware from './buildService'
+import createExpressApp from './app'
 
 const dev = process.env.NODE_ENV !== 'production'
 const dir = path.resolve(__dirname, '../')
-const app = next({ dev, dir })
-const handle = app.getRequestHandler()
+const nextApp = next({ dev, dir })
 
-const handleToNextMiddleware = async (
-  req: Request,
-  res: Response
-): Promise<void> => {
-  await handle(req, res, url.parse(req.url, true))
-}
+nextApp.prepare().then(() => {
+  const expressApp = createExpressApp(nextApp)
 
-const onListening = (err: unknown): void => {
-  if (err) throw err
-  console.log('Listening on http://localhost:3000')
-}
-
-app.prepare().then(() => {
-  const expressApp = express()
-
-  expressApp
-    .get('/api/size', getSizeMiddleware)
-    .use(handleToNextMiddleware)
-    .listen(3000, onListening)
+  expressApp.listen(3000, (err: unknown): void => {
+    if (err) {
+      console.error(err)
+      process.exit(1)
+    } else {
+      console.log('Listening on http://localhost:3000')
+    }
+  })
 })
