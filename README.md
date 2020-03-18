@@ -14,6 +14,7 @@ A rewrite of https://github.com/pastelsky/bundlephobia
 - Home Page with text field and suggestions
 - History API, giving the three minor versions and the newest major prior to the current one - based on pacote
 - React component displaying results
+- Logging with winston
 
 ### To Be Done
 
@@ -23,7 +24,6 @@ A rewrite of https://github.com/pastelsky/bundlephobia
 ### Nice To Have
 
 - Caching results for in the Build API - based on lru-cache
-- Logging with winston
 - Instrumenting (timings, metrics) with Prometheus
 
 ## Installation
