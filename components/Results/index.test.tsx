@@ -8,6 +8,7 @@ import * as PackageName from '../Hooks/usePackageName'
 import * as PackageSize from '../Hooks/usePackageSize'
 import { Status } from '../Hooks/usePackageSize'
 import { render } from '../../utils/test-utils'
+import wordings from '../wordings.json'
 
 jest.mock('../Hooks/usePackageName')
 jest.mock('../Hooks/usePackageSize')
@@ -55,13 +56,15 @@ describe('Results component', () => {
 
   it('renders package name and sizes when they have been fetched', () => {
     const packageName = 'foo@1.0.0'
+    const minifiedSize = 1024
+    const gzippedSize = 512
     spyOnUsePackageName.mockReturnValueOnce([
       packageName,
       (_: string): void => void _,
     ])
     spyOnUsePackageSize.mockReturnValueOnce({
       status: Status.received,
-      results: { minifiedSize: 1024, gzippedSize: 512 },
+      results: { minifiedSize, gzippedSize },
     })
 
     const { getByText } = render(<Results />)
@@ -69,31 +72,34 @@ describe('Results component', () => {
     getByText(`${packageName} bundle size`)
 
     getByText('1.0')
-    getByText('KiB')
-    getByText('minified')
+    getByText(wordings.kilobytesUnit)
+    getByText(wordings.minified)
 
     getByText('512')
-    getByText('bytes')
-    getByText('minified+gzipped')
+    getByText(wordings.bytesUnit)
+    getByText(wordings.minifiedAndGzipped)
   })
 
   it('renders an error message when building the package has failed', () => {
     const packageName = 'foo@1.0.0'
+    const statusCode = 500
+    const code = 'TestError'
+    const message = 'message'
     spyOnUsePackageName.mockReturnValueOnce([
       packageName,
       (_: string): void => void _,
     ])
     spyOnUsePackageSize.mockReturnValueOnce({
       status: Status.error,
-      error: { statusCode: 500, code: 'TestError', message: 'message' },
+      error: { statusCode, code, message },
     })
 
     const { getByText } = render(<Results />)
 
     getByText(`Error building ${packageName}`)
 
-    getByText('error status 500')
-    getByText('TestError')
-    getByText('message')
+    getByText(`error status ${statusCode}`)
+    getByText(code)
+    getByText(message)
   })
 })

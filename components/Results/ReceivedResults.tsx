@@ -4,6 +4,7 @@ import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
 import { PackageSizes } from '../Hooks/usePackageSize'
 import ResultsBox from './ResultsBox'
+import wordings from '../wordings.json'
 
 const useStyles = makeStyles((theme: Theme) => ({
   size: {
@@ -32,18 +33,15 @@ interface ReceivedResultsProps {
 }
 
 const megabyte = 1024 * 1024
-const megabytesUnit = 'MiB'
 const kilobyte = 1024
-const kilobytesUnit = 'KiB'
-const bytesUnit = 'bytes'
 
 const toUnits = (sizeInBytes: number): [string, string] => {
   if (sizeInBytes >= megabyte) {
-    return [(sizeInBytes / megabyte).toFixed(1), megabytesUnit]
+    return [(sizeInBytes / megabyte).toFixed(1), wordings.megabytesUnit]
   } else if (sizeInBytes >= kilobyte) {
-    return [(sizeInBytes / kilobyte).toFixed(1), kilobytesUnit]
+    return [(sizeInBytes / kilobyte).toFixed(1), wordings.kilobytesUnit]
   } else {
-    return [sizeInBytes.toString(), bytesUnit]
+    return [sizeInBytes.toString(), wordings.bytesUnit]
   }
 }
 
@@ -81,10 +79,13 @@ const ReceivedResults: React.FC<ReceivedResultsProps> = ({
   packageSizes,
 }): ReactElement => (
   <ResultsBox title={`${packageName} bundle size`}>
-    <SizeResult sizeInBytes={packageSizes.minifiedSize} label="minified" />
+    <SizeResult
+      sizeInBytes={packageSizes.minifiedSize}
+      label={wordings.minified}
+    />
     <SizeResult
       sizeInBytes={packageSizes.gzippedSize}
-      label="minified+gzipped"
+      label={wordings.minifiedAndGzipped}
     />
   </ResultsBox>
 )

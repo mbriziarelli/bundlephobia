@@ -1,0 +1,10 @@
+{
+  "title": "bundlephobia",
+  "bestLine": "find the cost of adding a npm package to your bundle",
+  "megabytesUnit": "MiB",
+  "kilobytesUnit": "KiB",
+  "bytesUnit": "bytes",
+  "minified": "minified",
+  "minifiedAndGzipped": "minified+gzipped",
+  "searchFieldLabel": "Find Package"
+}

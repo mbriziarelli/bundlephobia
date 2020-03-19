@@ -6,6 +6,7 @@ import React from 'react'
 import * as Router from 'next/router'
 import Page from '..'
 import { render } from '../../utils/test-utils'
+import wordings from '../../components/wordings.json'
 
 describe('Main page', () => {
   const spyOnUseRouter = jest.spyOn(Router, 'useRouter')
@@ -16,7 +17,7 @@ describe('Main page', () => {
 
     const { getByText } = render(<Page />)
 
-    getByText('bundlephobia')
-    getByText('find the cost of adding a npm package to your bundle')
+    getByText(wordings.title)
+    getByText(wordings.bestLine)
   })
 })

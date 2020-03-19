@@ -1,6 +1,7 @@
 import React from 'react'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles, createStyles } from '@material-ui/core/styles'
+import wordings from '../wordings.json'
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -29,7 +30,7 @@ const Header: React.FC = () => {
         align="center"
         className={classes.logo}
       >
-        bundlephobia
+        {wordings.title}
       </Typography>
       <Typography
         variant="h6"
@@ -38,7 +39,7 @@ const Header: React.FC = () => {
         align="center"
         className={classes.tagline}
       >
-        find the cost of adding a npm package to your bundle
+        {wordings.bestLine}
       </Typography>
     </>
   )

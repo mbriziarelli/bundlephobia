@@ -4,6 +4,7 @@ import TextField from '@material-ui/core/TextField'
 import { Suggestion } from 'bundlephobia-suggestions-service'
 import usePackageName from '../Hooks/usePackageName'
 import useSuggestions from '../Hooks/useSuggestions'
+import wordings from '../wordings.json'
 
 const getOptionLabel = (option: Suggestion | null): string =>
   option !== null ? `${option.name}@${option.version}` : ''
@@ -67,7 +68,7 @@ const SearchField: React.FC = (): React.ReactElement => {
             {...params}
             onFocus={(): void => void setHasFocus(true)}
             onBlur={(): void => void setHasFocus(false)}
-            label="Find Package"
+            label={wordings.textFieldLabel}
             variant="outlined"
             InputProps={{ ...params.InputProps }}
           />
