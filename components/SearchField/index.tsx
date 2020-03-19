@@ -68,7 +68,7 @@ const SearchField: React.FC = (): React.ReactElement => {
             {...params}
             onFocus={(): void => void setHasFocus(true)}
             onBlur={(): void => void setHasFocus(false)}
-            label={wordings.textFieldLabel}
+            label={wordings.searchFieldLabel}
             variant="outlined"
             InputProps={{ ...params.InputProps }}
           />
